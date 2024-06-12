@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta name="author" content="Gnani Prasad Reddy Thumukuntla" />
+    <title>SniffQuest Search Engine</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <script>
+      function toggleLabel() {
+        var association_qe_ele = document.getElementById("association_qe");
+        var metric_qe_ele = document.getElementById("metric_qe");
+        var scalar_qe_ele = document.getElementById("scalar_qe");
+
+        var target = document.getElementById("expanded_query");
+
+        if (
+          association_qe_ele.checked ||
+          metric_qe_ele.checked ||
+          scalar_qe_ele.checked
+        ) {
+          target.style.display = "block";
+        } else {
+          target.style.display = "none";
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <script
+      src="https://code.jquery.com/jquery-3.5.0.min.js"
+      integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+      crossorigin="anonymous"
+    ></script>
+    <!-- <script src="sample_response.js"></script> -->
+    <script src="script.js"></script>
+
+    <div>
+      <h1>Sniff Quest</h1>
+    </div>
+
+    <div>
+      <form id="form" onsubmit="return true;">
+        <input type="text" class= "search" placeholder="Enter your query..." id="UserInput" /><br />
+        <!-- <section style="display: flex">
+          <div class="option-group">
+            <p id="relevance">Relevance Model Options:</p>
+            <div class="radio-group">
+              <input
+                type="radio"
+                id="page_rank"
+                name="type"
+                value="page_rank"
+              />
+              <label id="page_rank_label" for="page_rank">Page Rank</label>
+              <input type="radio" id="hits" name="type" value="hits" />
+              <label id="hits_label" for="hits">HITS</label>
+            </div>
+          </div>
+
+          <div class="option-group">
+            <p id="clustering">Clustering Options:</p>
+            <div class="radio-group">
+              <input
+                type="radio"
+                id="flat_clustering"
+
+                name="type"
+                value="flat_clustering"
+              />
+              <label id="flat_clustering_label" for="flat_clustering"
+                >Flat</label
+              >
+              <input
+                type="radio"
+                id="single_HAC_clustering"
+                name="type"
+                value="single_HAC_clustering"
+              />
+              <label
+                id="single_HAC_clustering_label"
+                for="single_HAC_clustering"
+                >Single HAC</label
+              >
+              <input
+                type="radio"
+                id="complete_HAC_clustering"
+                name="type"
+                value="complete_HAC_clustering"
+              />
+              <label
+                id="complete_HAC_clustering_label"
+                for="complete_HAC_clustering"
+                >Average HAC</label
+              >
+            </div>
+          </div>
+
+          <div class="option-group">
+            <p id="queryexp">Query Expansion Option:</p>
+            <div class="radio-group">
+              <input
+                type="radio"
+                id="association_qe"
+                name="type"
+                value="association_qe"
+              />
+              <label id="association_qe_label" for="association_qe"
+                >Association</label
+              >
+              <input
+                type="radio"
+                id="metric_qe"
+                name="type"
+                value="metric_qe"
+              />
+              <label id="metric_qe_label" for="metric_qe">Metric</label>
+              <input
+                type="radio"
+                id="scalar_qe"
+                name="type"
+                value="scalar_qe"
+              />
+              <label id="scalar_qe_label" for="scalar_qe">Scalar</label>
+            </div>
+          </div>
+        </section> -->
+        
+        <section style="display: flex">
+          <div class="option-group">
+          <p id="relevance">Relevance Model Options:</p>
+          <div class="radio-group">
+          <input type="radio" id="page_rank" name="relevanceType" value="page_rank" />
+          <label id="page_rank_label" for="page_rank">Page Rank</label>
+          <input type="radio" id="hits" name="relevanceType" value="hits" />
+          <label id="hits_label" for="hits">HITS</label>
+          </div>
+          </div>
+          <div class="option-group">
+          <p id="clustering">Clustering Options:</p>
+          <div class="radio-group">
+          <input type="radio" id="flat_clustering" name="clusteringType" value="flat_clustering" />
+          <label id="flat_clustering_label" for="flat_clustering">Flat Clustering</label>
+          <input type="radio" id="single_HAC_clustering" name="clusteringType" value="single_HAC_clustering" />
+          <label id="single_HAC_clustering_label" for="single_HAC_clustering">Single HAC clustering</label>
+          <input type="radio" id="complete_HAC_clustering" name="clusteringType" value="complete_HAC_clustering" />
+          <label id="complete_HAC_clustering_label" for="complete_HAC_clustering">Average HAC Clustering</label>
+          </div>
+          </div>
+          <div class="option-group">
+          <p id="queryexp">Query Expansion Option:</p>
+          <div class="radio-group">
+          <input type="radio" id="association_qe" name="expansionType" value="association_qe" />
+          <label id="association_qe_label" for="association_qe">Association</label>
+          <input type="radio" id="metric_qe" name="expansionType" value="metric_qe" />
+          <label id="metric_qe_label" for="metric_qe">Metric</label>
+          <input type="radio" id="scalar_qe" name="expansionType" value="scalar_qe" />
+          <label id="scalar_qe_label" for="scalar_qe">Scalar</label>
+          </div>
+          </div>
+          </section>
+          
+        <input
+          id="srch"
+          type="button"
+          value="Search"
+          onclick="search(); queryToGoogleBing(); toggleLabel(); return false;"
+        />
+      </form>
+      <!-- <br /> -->
+      <h2 id="expanded_query" style="display: none">Expanded Query :</h2>
+      <div style="text-align: center; color: white;font-size: large;" id="expanded_query_result"></div>
+
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        $(window).keydown(function (event) {
+          if (event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+          }
+        });
+      });
+    </script>
+
+    <div>
+      <iframe id="opera" width="90%" height="700"></iframe>
+    </div>
+    <br /><br />
+
+    <!-- <hr
+      style="
+        height: 15px;
+        border-width: 5px;
+        color: gray;
+        background-color: blue;
+      "
+    /> -->
+
+    <h2 style="color: white">Google Search</h2>
+
+    <div>
+      <iframe
+        id="google"
+        src="https://www.google.com/search?igu=1&source=hp&ei=lheWXriYJ4PktQXN-LPgDA&q="
+        width="90%"
+        height="700"
+      ></iframe>
+    </div>
+    <br /><br />
+
+    <!-- <hr
+      style="
+        height: 15px;
+        border-width: 5px;
+        color: gray;
+        background-color: forestgreen;
+      " -->
+    />
+
+    <h2 style="color: white">Bing Search</h2>
+
+    <div>
+      <iframe
+        id="bing"
+        src="https://www.bing.com/search?q="
+        width="90%"
+        height="700"
+        margin="auto"
+      ></iframe>
+    </div>
+  </body>
+</html>

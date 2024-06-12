@@ -1,0 +1,147 @@
+/* style.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: black;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-image: url("final.png");
+  height: 100%;
+
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-size: 200px 200px;
+}
+
+h1,
+h2 {
+  margin: 10;
+  padding: 0;
+  text-align: center;
+  font-family: Georgia;
+  color: white;
+}
+
+div {
+  margin: 10px;
+}
+
+form {
+  padding: 20px;
+  border-radius: 5px;
+}
+
+section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: auto;
+  padding: 20px;
+}
+
+.option-group {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.radio-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+
+input[type="text"] {
+  width: 50%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid black;
+  font-size: 16px;
+  margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input[type="radio"] {
+  cursor: pointer;
+}
+
+p {
+  text-align: center;
+  margin: 8px;
+  font-family: Georgia;
+  color: white;
+}
+
+label {
+  margin-left: 0px;
+  cursor: pointer;
+  font-family: Georgia;
+  color: white;
+}
+
+iframe {
+  border: #333;
+  border-radius: 5px;
+  margin-left: 80px;
+}
+
+.option-group {
+  margin-bottom: 5px;
+}
+
+.radio-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.radio-group input[type="radio"] {
+  margin-right: 5px;
+}
+
+.radio-group label {
+  margin-right: 15px;
+}
+
+input[type="button"] {
+  background-color: #e7e2e2;
+  border: none;
+  color: black;
+  font-size: 15px;
+  padding: 10px 20px;
+  margin: auto;
+  border-radius: 4px solid;
+  outline: none;
+  display: block;
+}
+input[type="button"]:hover {
+  border: 1px solid #c8c8c8;
+  padding: 9px 19px;
+  color: #808080;
+}
+
+#UserInput {
+  margin: 5px auto;
+  width: 575px;
+  border-radius: 30px;
+  border: 1px solid #dcdcdc;
+}
+#UserInput:hover {
+  box-shadow: 1px 1px 8px 1px #dcdcdc;
+}
+#UserInput:focus-within {
+  box-shadow: 1px 1px 8px 1px #dcdcdc;
+  outline: none;
+}
+#UserInput {
+  height: 20px;
+  border: none;
+  width: 600px;
+  font-size: 16px;
+  outline: none;
+}
